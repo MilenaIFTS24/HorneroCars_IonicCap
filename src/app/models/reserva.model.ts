@@ -4,8 +4,7 @@ export interface Reserva {
 
     reservaId: string;
     userNombre: string;
-    vehiculo: Vehiculo;
-    fechaCreacion: string;
+    vehiculo: Vehiculo;    
     fechaInicio: string;
     fechaDevolucion: string;
     dias: number;

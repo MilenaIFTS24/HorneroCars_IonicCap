@@ -1,0 +1,16 @@
+.control {
+    margin: 15px;
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 16px;
+}
+
+ion-note {
+    display: flex;
+    position: absolute;
+    color: rgb(161, 47, 47);
+}
+
+#enviarForm {
+    background-color: orangered !important;
+}
