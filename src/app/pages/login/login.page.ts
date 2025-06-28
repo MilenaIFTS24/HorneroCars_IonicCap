@@ -1,20 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-
+import { ReactiveFormsModule, FormBuilder, FormsModule, Validator, Validators } from '@angular/forms';
+import {IonicModule} from '@ionic/angular'
+import { LoginAuthService } from 'src/app/services/login-auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonicModule, ReactiveFormsModule]
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
-  constructor() { }
+  private fb=inject(FormBuilder)
+  private auth=inject(LoginAuthService)
 
-  ngOnInit() {
+  iniciarSesionForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    contraseña: ['', [Validators.required, Validators.minLength(4)]],
+  })
+
+  contraseniaVisible = false;
+
+  mostrarContrasenia(){
+    this.contraseniaVisible = !this.contraseniaVisible
   }
+
+  async enviarForm(){
+    if(this.iniciarSesionForm.valid){
+      const {email, contraseña} = this.iniciarSesionForm.value
+      try{
+        await this.auth.iniciarSesion(email!, contraseña!)
+      } catch(error){
+        alert(error || 'que macana che, hay algun error')
+      }
+    }
+    else{
+      this.iniciarSesionForm.markAllAsTouched();
+      alert('formulario invalido')
+    }
+  }
+
+  async registrarse(){
+    if(this.iniciarSesionForm.valid){
+      const {email, contraseña} = this.iniciarSesionForm.value
+      try {
+        await this.auth.registrarse(email!, contraseña!)
+      } catch (error) {
+        alert('No logo registrarse, verifique sus datos' + error)
+      }
+    }
+  }
+ 
 
 }
