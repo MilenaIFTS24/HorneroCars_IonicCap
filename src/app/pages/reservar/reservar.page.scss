@@ -1,35 +1,53 @@
-#formReserva {
-    display: flex;
-    padding: 5%;  
-    flex-direction: column;  
+//Estilos toolbar
+
+ion-toolbar {
+    --background: #1e1c1cde;
 }
 
-
-.item ion-label {
-    justify-items: center;
+ion-title {
+    color: antiquewhite;
 }
 
-.control {
-    margin: 15px;
-    padding: 5px;
-    border: 1px solid rgb(59, 59, 59);
-    border-radius: 8px;
+ion-title span {
+    color: var(--primer-color);
 }
 
-ion-note {
-    position: absolute;
-    color: rgb(161, 47, 47);
-}
-
-#mostrarReserva {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    padding: 20px;
-    background-color: rgb(34, 34, 34);
-    justify-content: center;
-
+//Estilo titulo y contenido
+ion-content {
+    --background: var(--cuarto-color);
+    ion-icon {
+        font-size: 38px;
+        --ionicon-size: 38px;
+        color: #2b2a2a;
+        margin-bottom: 0;
+    }
+    
     ion-title {
-        font-size: larger;
+        margin: 25px 0 20px 0;
+        font-weight: 600;
+        color: var(--tercer-color);
+    }
+}
+
+//Estilos formulario
+
+#formReserva {
+    margin: 10px;
+    padding: 5px;    
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+
+    ion-input {
+        margin: 15px;
+    }
+
+    ion-select {
+        margin: 15px;
+    }
+
+    ion-button {
+        --background: var(--primer-color);
+        --color: var(--quinto-color);
     }
 }
