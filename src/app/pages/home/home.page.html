@@ -1,8 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Hornero Cars </ion-title>
+    <ion-title>Hornero Cars</ion-title>
     <ion-buttons slot="end">
-        <ion-icon name="log-out-outline" size="large"></ion-icon>
+      <ion-button>
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,18 +15,21 @@
 
 <ion-footer>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="reservas" routerLink="/home/reservas" routerDirection="root">
-      <ion-icon name="car-sport-outline"></ion-icon>
+    <ion-tab-button tab="home" routerLink="/home" routerDirection="root">
+      <ion-icon name="car-sport-outline" class="tab-icon-outline"></ion-icon>
+      <ion-icon name="car-sport" class="tab-icon-filled"></ion-icon>
       <ion-label>Reservar</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="historial" routerLink="/home/historial" routerDirection="root">
-      <ion-icon name="list-outline"></ion-icon>
+      <ion-icon name="list-outline" class="tab-icon-outline"></ion-icon>
+      <ion-icon name="list" class="tab-icon-filled"></ion-icon>
       <ion-label>Mis Reservas</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="profile" routerLink="/home/perfil" routerDirection="root">
-      <ion-icon name="person-circle-outline"></ion-icon>
+    <ion-tab-button tab="perfil" routerLink="/home/perfil" routerDirection="root">
+      <ion-icon name="person-circle-outline" class="tab-icon-outline"></ion-icon>
+      <ion-icon name="person-circle" class="tab-icon-filled"></ion-icon>
       <ion-label>Perfil</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
