@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import {logOutOutline, carSport,carSportOutline, list, listOutline, personCircle, personCircleOutline, //agregar mas iconos aca
+import {logOutOutline, carSport,carSportOutline, list, listOutline, personCircle, personCircleOutline, camera //agregar mas iconos aca
 } from 'ionicons/icons'; 
 
 import { addIcons } from 'ionicons'; 
@@ -21,6 +21,7 @@ export class AppComponent {
       listOutline,
       personCircle,
       personCircleOutline, 
+      camera
     });
   }
 }

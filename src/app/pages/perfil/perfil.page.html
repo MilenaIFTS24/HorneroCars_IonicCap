@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Mis datos </ion-title> <ion-buttons slot="end">
+    <ion-buttons slot="end">
       <ion-chip>
         <ion-avatar>
           <img alt="user" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
@@ -12,20 +12,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title>Mis datos personales</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Editar Perfil</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
+  <ion-title>Mis datos personales</ion-title>
 
     <div class="contenedor-lista">
       <ion-list lines="full" class="lista-perfil">
@@ -43,7 +30,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-input label="Teléfono (Opcional)" label-placement="floating" type="tel"
+          <ion-input label="Teléfono" label-placement="floating" type="tel"
             placeholder="+54 9 11 1234 5678"></ion-input>
         </ion-item>
 
@@ -52,14 +39,18 @@
             placeholder="DD/MM/AAAA"></ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-label>Documentación Fotográfica</ion-label>
-          <div class="file-upload-container">
-            <input type="file" accept="image/*" id="fileInput" (change)="actualizarNombreArchivo($event)" />
-            <label for="fileInput" class="file-button">Elegir archivo</label>
-            <span class="file-name">{{ nombreArchivo }}</span>
-          </div>
-        </ion-item>
+       <ion-item class="subir-imagen">
+        <ion-label>Documentación Fotográfica</ion-label>
+
+        <div class="contenedor-subir-imagen">
+          <ion-button size="small" class="sacarFoto" (click)="sacarFoto()">
+            <ion-icon slot="start" name="camera"></ion-icon>
+            Sacar Foto
+          </ion-button>
+        <span class="nombre-archivo">{{ nombreArchivo }}</span>
+        </div>
+        
+      </ion-item>
 
       </ion-list>
 
