@@ -1,0 +1,63 @@
+
+ion-header {
+  padding: 0.5em;
+  background-color: #1b1b1a;
+  color: #f1f1f1;
+}
+
+ion-toolbar {
+  --background: #1b1b1a;
+  --color: #f1f1f1;
+}
+
+ion-footer {
+  padding: 0; 
+  background-color: #1b1b1a; 
+}
+
+ion-tab-bar {
+  --background: #1b1b1a; 
+  --border: none;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+// --- estilos para cada icono y su label ---
+ion-tab-button {
+  ion-icon {
+    font-size: 38px;
+    --ionicon-size: 38px;
+    color: #b3aeae; 
+    margin-bottom: 5px;
+  }
+  ion-label {
+    font-size: 0.8em;
+    color: #c9c5c5; 
+  }
+
+// --- estilos para hover---
+  &:hover {
+    ion-icon {
+      color: #e98e1f; 
+    }
+    ion-label {
+      color: #e98e1f;  
+    }
+  }
+}
+
+
+// --- estilos para cuando boton esta seleccionado ---
+ion-tab-button[aria-selected="true"] {
+  --background: rgba(255, 179, 56, 0.4); 
+
+  ion-icon {
+    color: #fff; 
+  }
+  ion-label {
+    color: #fff; 
+    font-weight: bold;
+  }
+}
