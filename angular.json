@@ -36,7 +36,7 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": ["src/global.scss", "src/theme/variables.scss", "https://cdn.jsdelivr.net/npm/ionicons@6.0.3/dist/css/ionicons.min.css"],
             "scripts": [],
             "browser": "src/main.ts"
           },

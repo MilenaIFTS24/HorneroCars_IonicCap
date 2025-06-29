@@ -4,6 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="login-container">
 
@@ -15,12 +17,12 @@
 
     <form [formGroup]="iniciarSesionForm" (ngSubmit)="enviarForm()">
       <ion-item>
-        <ion-label position="floating">Email</ion-label>
+        <ion-label class="label" position="floating">Email</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
+        <ion-label class="label" position="floating">Contraseña</ion-label>
         <ion-input
           [type]="contraseniaVisible ? 'text' : 'password'"
           formControlName="contraseña">
@@ -31,7 +33,7 @@
       <ion-button expand="block" fill="clear" size="small" (click)="mostrarContrasenia()">
         <ion-icon
           slot="start"
-          [name]="contraseniaVisible ? 'eye-off-outline' : 'eye-outline'">
+          [name]="contraseniaVisible ? 'eye-off' : 'eye'">
         </ion-icon>
         {{ contraseniaVisible ? 'Ocultar' : 'Mostrar' }} contraseña
       </ion-button>

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormsModule, Validator, Validators } from '@angular/forms';
 import {IonicModule} from '@ionic/angular'
 import { LoginAuthService } from 'src/app/services/login-auth.service';
+import { eye, eyeOff } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -32,7 +34,7 @@ export class LoginPage {
       try{
         await this.auth.iniciarSesion(email!, contraseña!)
       } catch(error){
-        alert(error || 'que macana che, hay algun error')
+        alert('que macana che, hay algun error')
       }
     }
     else{
@@ -47,10 +49,12 @@ export class LoginPage {
       try {
         await this.auth.registrarse(email!, contraseña!)
       } catch (error) {
-        alert('No logo registrarse, verifique sus datos' + error)
+        alert('No logo registrarse, verifique sus datos')
       }
     }
   }
- 
+ constructor() {
+  addIcons({ eye, eyeOff });
+}
 
 }
