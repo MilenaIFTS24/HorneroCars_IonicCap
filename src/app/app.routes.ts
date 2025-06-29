@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'perfil',
     pathMatch: 'full',
   },   {
     path: 'login',
@@ -17,7 +17,8 @@ export const routes: Routes = [
   {
     path: 'reservar',
     loadComponent: () => import('./pages/reservar/reservar.page').then( m => m.ReservarPage), //canActivate: [authGuard],
-  },  {
+  },
+  {
     path: 'perfil',
     loadComponent: () => import('./pages/perfil/perfil.page').then( m => m.PerfilPage)
   },
