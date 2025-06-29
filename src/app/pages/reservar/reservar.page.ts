@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Form, FormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validator } from '@angular/forms';
+import { addIcons } from 'ionicons';
+import { calendarOutline } from 'ionicons/icons';
 
 
 @Component({
@@ -28,14 +30,20 @@ export class ReservarPage {
       fechaDevolucion: [this.fechaActual, [Validators.required]],
       estado: ['Pendiente De Pago'],//inicia como pendiente de pago      
     });
+
+    addIcons({
+      calendarOutline,
+    })
   }
 
 
   submitForm() {
     if (this.formReserva.invalid) {
       this.formReserva.markAllAsTouched();//si alguna parte es invalida, marca todas las casillas y muestra los errores
-    } else {
+    } else {      
+      console.log(this.formReserva.value);
       this.formReserva.reset();
+      alert('Reserva completada con éxito.')
     }
     
   }

@@ -1,12 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Hacer una reserva</ion-title>
+    <ion-button fill="clear" color="medium" slot="end">Volver</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="formReserva" (ngSubmit)="submitForm()" class="ion-padding">
-    <ion-item>
+  <form [formGroup]="formReserva" (ngSubmit)="submitForm()" id="formReserva">
+    <ion-item class="item">
       <ion-label>Nombre</ion-label>
       <ion-input class="control" aria-label="Nombre" placeholder="Ingrese su nombre" id="userNombre"
         formControlName="userNombre"></ion-input>
@@ -23,15 +24,15 @@
       }
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label>Vehículo</ion-label>
       <ion-select class="control" aria-label="Vehiculos" placeholder="Seleccione el vehículo"
         formControlName="vehiculo">
-        <ion-select-option value="sedanConfort">Sedan Confort</ion-select-option>
-        <ion-select-option value="economico">Económico</ion-select-option>
-        <ion-select-option value="suv">SUV</ion-select-option>
-        <ion-select-option value="utilitario">Utilitario</ion-select-option>
-        <ion-select-option value="lujo">Lujo</ion-select-option>
+        <ion-select-option value="Sedan Confort">Sedan Confort</ion-select-option>
+        <ion-select-option value="Económico">Económico</ion-select-option>
+        <ion-select-option value="SUV">SUV</ion-select-option>
+        <ion-select-option value="Utilitario">Utilitario</ion-select-option>
+        <ion-select-option value="Lujo">Lujo</ion-select-option>
       </ion-select>
       @if (hayErrores('vehiculo', 'required')) {
       <ion-note>
@@ -40,7 +41,7 @@
       }
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label>Seleccione la fecha y hora de inicio</ion-label>
       <ion-datetime-button class="control" datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
@@ -60,7 +61,7 @@
       </ion-modal>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label>Seleccione la fecha y hora de devolución</ion-label>
       <ion-datetime-button class="control" datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
@@ -80,5 +81,15 @@
       </ion-modal>
     </ion-item>
 
-    <ion-button id="enviarForm" type="submit" expand="full" routerLink="/home"><ion-icon name="checkbox"></ion-icon>Reservar</ion-button>
+    <ion-button id="enviarForm" type="submit" expand="block" routerLink="/home"><ion-icon name="checkbox"></ion-icon>Reservar<ion-icon name="calendar-outline"></ion-icon></ion-button>
   </form>
+  <div id="mostrarReserva">
+    @if (formReserva.valid) {
+    <ion-title>Su reserva</ion-title>
+    <ion-text>Nombre: {{formReserva.value.userNombre}}</ion-text>
+    <ion-text>Vehículo: {{formReserva.value.vehiculo}}</ion-text>
+    <ion-text>Fecha de Inicio: {{formReserva.value.fechaInicio}}</ion-text>
+    <ion-text>Fecha de Devolución: {{formReserva.value.fechaDevolucion}}</ion-text>
+  }
+  </div>
+  

@@ -1,16 +1,35 @@
+#formReserva {
+    display: flex;
+    padding: 5%;  
+    flex-direction: column;  
+}
+
+
+.item ion-label {
+    justify-items: center;
+}
+
 .control {
     margin: 15px;
     padding: 5px;
-    border: 1px solid grey;
-    border-radius: 16px;
+    border: 1px solid rgb(59, 59, 59);
+    border-radius: 8px;
 }
 
 ion-note {
-    display: flex;
     position: absolute;
     color: rgb(161, 47, 47);
 }
 
-#enviarForm {
-    background-color: orangered !important;
+#mostrarReserva {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(34, 34, 34);
+    justify-content: center;
+
+    ion-title {
+        font-size: larger;
+    }
 }
