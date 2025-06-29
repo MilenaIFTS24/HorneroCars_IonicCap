@@ -43,23 +43,23 @@ ion-tab-button {
     ion-icon {
         font-size: 38px;
         --ionicon-size: 38px;
-        color: #2b2a2a;
+        color: #636161;
         margin-bottom: 5px;
     }
 
     ion-label {
         font-size: 0.8em;
-        color: #2b2a2a;
+        color: #636161;
     }
 
     //  estilos para hover
     &:hover {
         ion-icon {
-            color: #fc8d04;
+            color: #2b2a2a;
         }
 
         ion-label {
-            color: #e98e1f;
+            color: #2b2a2a;
         }
     }
 }
