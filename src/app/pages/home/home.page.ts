@@ -14,7 +14,7 @@ import { Router } from '@angular/router'; //para que funcione la llamada en el h
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone:true,
-  imports: [IonicModule, CommonModule, FormsModule,]
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink]
   
 })
 export class HomePage  {

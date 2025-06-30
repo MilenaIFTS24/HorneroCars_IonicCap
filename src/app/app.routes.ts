@@ -2,14 +2,9 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
 
-{
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },   {
+  {
     path: 'login', loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
   },
-
 
   {
     path: 'home', loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage),
@@ -20,18 +15,18 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'reservar', loadComponent: () => import('./pages/reservar/reservar.page').then(m => m.ReservarPage),// canActivate: [authGuard], // Si lo necesitas
+        path: 'reservar', loadComponent: () => import('./pages/reservar/reservar.page').then(m => m.ReservarPage),// canActivate: [authGuard], 
       },
-      // {
-      //   path: 'historial', loadComponent: () => import('./pages/historial/historial.page').then(m => m.HistorialPage), // canActivate: [authGuard],
-      // },
-      // {
-      //   path: 'perfil', loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage), // canActivate: [authGuard],
-      // },
-      {
-        path: '**',
-        redirectTo: 'reservar'
-      }
+       {
+         path: 'perfil', loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage), // canActivate: [authGuard],
+       },
+
     ]
   },
+
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },  
 ];

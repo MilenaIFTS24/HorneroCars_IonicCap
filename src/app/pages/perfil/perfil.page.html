@@ -1,15 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <!-- ion segment para dividir dentro del content sin crear pages -->
   <ion-segment [value]="segmentoActual" (ionChange)="cambiarSegmento($event)">
     <ion-segment-button value="mis-datos">
@@ -50,7 +40,7 @@
             </ion-item>
             <ion-item>
               <ion-input label="Correo Electrónico" label-placement="floating" type="email"
-                placeholder="email@ejemplo.com" formControlName="correo" errorText='Correo Invalido'></ion-input>
+                placeholder="email@ejemplo.com" errorText='Correo Invalido'></ion-input>
             </ion-item>
             <ion-item>
               <ion-input label="Teléfono" label-placement="floating" type="tel" placeholder="+54 9 11 1234 5678"

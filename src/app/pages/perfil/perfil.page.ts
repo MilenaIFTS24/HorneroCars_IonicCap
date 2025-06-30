@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators} from '@angular/forms'; 
 import { IonicModule } from '@ionic/angular';
-import { IonNavLink } from '@ionic/angular/standalone';
 import { CameraService } from 'src/app/services/camera.service';
+import { RouterLink } from '@angular/router'; //para que funcione la llamada en el html
+
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule,FormsModule,IonNavLink,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule,FormsModule,ReactiveFormsModule]
 })
 export class PerfilPage implements OnInit {
 
