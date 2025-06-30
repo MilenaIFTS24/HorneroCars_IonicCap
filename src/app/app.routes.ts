@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth.guard';
 
 //import { authGuard } from './auth.guard';
 
@@ -9,22 +10,22 @@ export const routes: Routes = [
   },
 
   {
-    path: 'home', loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage),
+    path: 'home', loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage), canActivate: [authGuard],
     children: [ // Los hijos de 'home' se cargan dentro de HomePage
       {
         path: '',
-        redirectTo: 'reservar', // Redirige a 'reservar' si solo se accede a /home
+        redirectTo: 'perfil', // Redirige a 'reservar' si solo se accede a /home
         pathMatch: 'full'
       },
       {
-        path: 'reservar', loadComponent: () => import('./pages/reservar/reservar.page').then(m => m.ReservarPage),// canActivate: [authGuard], 
+        path: 'reservar', loadComponent: () => import('./pages/reservar/reservar.page').then(m => m.ReservarPage),canActivate: [authGuard], 
       },
       {
-        path: 'perfil', loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage), // canActivate: [authGuard],
+        path: 'perfil', loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage), canActivate: [authGuard],
       },
       {
         path: 'mis-reservas',
-        loadComponent: () => import('./pages/mis-reservas/mis-reservas.page').then(m => m.MisReservasPage), //canActivate: [authGuard],
+        loadComponent: () => import('./pages/mis-reservas/mis-reservas.page').then(m => m.MisReservasPage), canActivate: [authGuard],
 
       },
 
