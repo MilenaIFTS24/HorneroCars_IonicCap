@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CameraService } from 'src/app/services/camera.service';
-import { RouterLink } from '@angular/router'; //para que funcione la llamada en el html
+import { Router, RouterLink } from '@angular/router'; //para que funcione la llamada en el html
 import { DatosPerfilService } from 'src/app/services/datos-perfil.service'; // Importa el servicio datos-perfil
 import { ToastController } from '@ionic/angular';
 
@@ -25,7 +25,7 @@ export class PerfilPage implements OnInit {
 
 
   constructor(private cameraService: CameraService,
-    private datosPerfilService: DatosPerfilService, private toastController: ToastController) {  // Inyecta servicios
+    private datosPerfilService: DatosPerfilService, private toastController: ToastController, private router: Router) {  // Inyecta servicios
 
     //Validators para el formgroup (formPerfil)
     this.formPerfil = new FormGroup({
@@ -39,13 +39,34 @@ export class PerfilPage implements OnInit {
   }
 
   //funciones sobre el form 
-  async guardarCambios() {
+// Método para guardar cambios, mostrar toast y redirigir
+  async guardarCambios() { // Se eliminan los parámetros 'mensaje' y 'color' ya que el mensaje y color son fijos para el éxito
     if (this.formPerfil.valid) {
-      this.datosPerfilService.guardarDatos(this.formPerfil.value); // Usa el servicio para guardar los datos
-      
+      // Guarda los datos usando el servicio (ahora es asíncrono)
+      await this.datosPerfilService.guardarDatos(this.formPerfil.value);
+
+      // Muestra el Toast de éxito
+      const toast = await this.toastController.create({
+        message: 'Datos de perfil guardados exitosamente.', // Mensaje fijo de éxito
+        duration: 1400,
+        color: 'success', // Color fijo de éxito
+        position: 'middle',
+      });
+      await toast.present();
+      await toast.onDidDismiss();
+      // Redirige a la página de reservas después de que el toast se haya presentado
+      this.router.navigate(['/home/reservar']); // Asegúrate de que '/reservas' sea la ruta correcta
     } else {
       console.log('Formulario inválido, no se pueden guardar los cambios.');
-      this.formPerfil.markAllAsTouched();
+      // Muestra un toast de error si el formulario es inválido
+      const errorToast = await this.toastController.create({
+        message: 'Por favor, completa todos los campos requeridos y corrige los errores.',
+        duration: 1000,
+        color: 'danger',
+        position: 'middle',
+      });
+      await errorToast.present();
+      this.formPerfil.markAllAsTouched(); // Marca todos los campos como tocados para mostrar errores de validación
     }
   }
 
@@ -59,6 +80,7 @@ export class PerfilPage implements OnInit {
   cancelarCambios() {
     this.cargarDatosGuardados();   // Se cancelan los cambios
   }
+  
 
   async ngOnInit() {
     // Cargar la foto guardada solo si el segmento es 'documentacion-fotografica' al inicio

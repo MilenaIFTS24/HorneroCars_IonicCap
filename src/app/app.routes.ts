@@ -14,7 +14,7 @@ export const routes: Routes = [
     children: [ // Los hijos de 'home' se cargan dentro de HomePage
       {
         path: '',
-        redirectTo: 'perfil', // Redirige a 'reservar' si solo se accede a /home
+        redirectTo: 'perfil', // Redirige a 'perfil' si solo se accede a /home
         pathMatch: 'full'
       },
       {

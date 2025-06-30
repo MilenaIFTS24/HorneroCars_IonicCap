@@ -50,7 +50,6 @@ export class MisReservasPage implements OnInit {
     }
   }
 
-
   irAPagar(reservaId: string) {
     this.navCtrl.navigateForward(`/pago/${reservaId}`);
   }
