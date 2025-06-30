@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './auth.guard';
+// import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -16,7 +16,12 @@ export const routes: Routes = [
   },
   {
     path: 'reservar',
-    loadComponent: () => import('./pages/reservar/reservar.page').then( m => m.ReservarPage), canActivate: [authGuard],
+    loadComponent: () => import('./pages/reservar/reservar.page').then( m => m.ReservarPage), //canActivate: [authGuard],
   },
+  {
+    path: 'mis-reservas',
+    loadComponent: () => import('./pages/mis-reservas/mis-reservas.page').then( m => m.MisReservasPage), //canActivate: [authGuard],
+  },
+
  
 ];
