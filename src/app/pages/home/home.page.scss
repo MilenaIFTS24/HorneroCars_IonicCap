@@ -6,14 +6,22 @@ ion-header {
   ion-icon {  //icono dentro del header 
         font-size: 38px;
         --ionicon-size: 38px;
-        color: #d3cccc;
+        color: #514f4f;
         margin-bottom: 5px;
     }
 }
 
 ion-toolbar {
-    --background: #1b1b1a;
+    --background: #1e1c1cde;
     --color: #f1f1f1;
+}
+
+ion-title {
+    color: antiquewhite;
+}
+
+ion-title span {
+    color: var(--primer-color);
 }
 
 ion-footer {
