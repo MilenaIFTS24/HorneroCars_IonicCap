@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Hornero<span>Cars</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card *ngFor="let reserva of reservas" class="reserva-card">
+    <ion-card-header>
+      <ion-card-title>{{ reserva.vehiculo }}</ion-card-title>
+      <ion-card-subtitle>Estado: {{ reserva.estado }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Inicio:</strong> {{ reserva.fechaInicio }}</p>
+      <p><strong>Devolución:</strong> {{ reserva.fechaDevolucion }}</p>
+      <p><strong>Días:</strong> {{ reserva.dias }}</p>
+      <p><strong>Seguro:</strong> {{ reserva.seguro }}</p>
+      <p><strong>Costo Vehículo:</strong> ${{ reserva.costoVehiculo }}</p>
+      <p><strong>Total:</strong> ${{ reserva.costoTotal }}</p>
+
+      <div class="botones-reserva">
+        <ion-button
+  expand="block"
+  fill="solid"
+  (click)="irAPagar(reserva.reservaId)"
+  class="btn-principal">
+  Pagar Reserva
+</ion-button>
+
+        <ion-button
+  expand="block"
+  fill="outline"
+  (click)="cancelarReserva(reserva.reservaId)"
+  [disabled]="reserva.estado === 'Cancelada'"
+  class="btn-principal-outline">
+  Cancelar Reserva
+</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text *ngIf="reservas.length === 0" color="medium">
+    No tienes reservas registradas aún.
+  </ion-text>
+
+  
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="cargarMasReservas($event)" *ngIf="reservas.length < reservasTodas.length">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Cargando más reservas...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <span>© 2025 HorneroCars</span>
+      <span>Desarrollado en Argentina</span>
+    </div>
+  </ion-toolbar>
+</ion-footer>
