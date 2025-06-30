@@ -13,6 +13,10 @@
     <ion-card-header>
       <ion-card-title>{{ reserva.vehiculo }}</ion-card-title>
       <ion-card-subtitle>Estado: {{ reserva.estado }}</ion-card-subtitle>
+      <ion-badge color="success" *ngIf="reserva.estado === 'Pagada'">    <!--PASAR PARA CAMBIOS-->
+  Reserva Pagada
+</ion-badge>
+
     </ion-card-header>
 
     <ion-card-content>
@@ -23,24 +27,22 @@
       <p><strong>Costo Vehículo:</strong> ${{ reserva.costoVehiculo }}</p>
       <p><strong>Total:</strong> ${{ reserva.costoTotal }}</p>
 
-      <div class="botones-reserva">
-        <ion-button
-  expand="block"
-  fill="solid"
-  (click)="irAPagar(reserva.reservaId)"
-  class="btn-principal">
-  Pagar Reserva
-</ion-button>
 
-        <ion-button
-  expand="block"
-  fill="outline"
-  (click)="cancelarReserva(reserva.reservaId)"
-  [disabled]="reserva.estado === 'Cancelada'"
-  class="btn-principal-outline">
-  Cancelar Reserva
-</ion-button>
+      <!-- PASAR PARA CAMBIO -->
+
+
+      <div class="botones-reserva" *ngIf="reserva.estado !== 'Pagada' && reserva.estado !== 'Cancelada'">
+        <ion-button expand="block" fill="outline" color="danger" (click)="cancelarReserva(reserva.reservaId)">
+          Cancelar Reserva
+        </ion-button>
+
+        <ion-button expand="block" class="btn-principal" (click)="irAPagar(reserva.reservaId)">
+          Pagar Reserva
+        </ion-button>
       </div>
+      
+      <!-- HASTA AQUI VA EL CAMBIO -->
+
     </ion-card-content>
   </ion-card>
 
@@ -48,13 +50,12 @@
     No tienes reservas registradas aún.
   </ion-text>
 
-  
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="cargarMasReservas($event)" *ngIf="reservas.length < reservasTodas.length">
-  <ion-infinite-scroll-content
-    loadingSpinner="bubbles"
-    loadingText="Cargando más reservas...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="cargarMasReservas($event)"
+    *ngIf="reservas.length < reservasTodas.length">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más reservas...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 
 </ion-content>
