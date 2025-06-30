@@ -47,9 +47,10 @@ export class ReservarService {
       key: this.storageKey,
       value: JSON.stringify(this.reservas)
     });
+
   }
 
-  // Esta función crea reservas de ejemplo si el usuario no tiene ninguna
+
   // private async agregarMockReservas() {
   //   const mock: Reserva[] = [
   //     {

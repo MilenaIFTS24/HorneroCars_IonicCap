@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonCardContent, IonText, IonFooter, IonIcon, IonInfiniteScrollContent, IonInfiniteScroll } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonCardContent, IonText, IonFooter, IonIcon, IonInfiniteScrollContent, IonInfiniteScroll, IonBadge } from '@ionic/angular/standalone';
 import { NavController } from '@ionic/angular';
 import { ReservarService } from 'src/app/services/reservar.service';
 import { Reserva } from 'src/app/models/reserva.model';
@@ -11,7 +11,7 @@ import { Reserva } from 'src/app/models/reserva.model';
   templateUrl: './mis-reservas.page.html',
   styleUrls: ['./mis-reservas.page.scss'],
   standalone: true,
-  imports: [IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonText, IonCardContent, IonButton, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, CommonModule, FormsModule]
+  imports: [IonBadge, IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonText, IonCardContent, IonButton, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, CommonModule, FormsModule]
 })
 export class MisReservasPage implements OnInit {
 

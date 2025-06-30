@@ -63,7 +63,7 @@ export class ReservarPage {
       return;
     }
     //obtengo los datos del formulario y se los paso al metodo agregarReserva del servicio
-    const reservaId = new Date().toLocaleDateString();
+    const reservaId = new Date().toString();
     const userNombre = this.formReserva.get('userNombre')?.value;
     const vehiculo = this.formReserva.get('vehiculo')?.value;
     const fechaInicio = this.formReserva.get('fechaInicio')?.value;
