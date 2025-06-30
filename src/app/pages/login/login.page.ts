@@ -60,7 +60,7 @@ export class LoginPage {
         await this.auth.registrarse(email!, contraseña!)  // Intenta registrarse
         this.mostrarToastError('Email de verificacion enviada, verifica tu correo para activar tu cuenta', 'success')
       } catch (error) {
-       this.mostrarToastError('No logo registrarse, emial ya registrado o verifique sus datos', 'danger')
+       this.mostrarToastError('No logro registrarse, email ya registrado o verifique sus datos', 'danger')
       }
     }
   }
