@@ -95,3 +95,32 @@ ion-card-content p {
     transform: translateY(0);
   }
 }
+
+ion-badge {
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  border-radius: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Estados de reserva */
+.estado-pagada {
+  background-color: var(--hornero-exito);
+  color: white;
+}
+
+.estado-pendiente {
+  background-color: var(--hornero-advertencia);
+  color: #000;
+}
+
+.estado-cancelada {
+  background-color: var(--hornero-error);
+  color: white;
+}
+
+.estado-default {
+  background-color: var(--ion-color-medium);
+  color: white;
+}

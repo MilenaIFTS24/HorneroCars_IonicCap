@@ -19,6 +19,21 @@ export class MisReservasPage implements OnInit {
   reservasTodas: Reserva[] = [];  // ← todas las reservas cargadas     // ← las que se muestran en pantalla
   mostrarCantidad: number = 5;
 
+
+  getClaseEstado(estado: string): string {
+  switch (estado) {
+    case 'Pagada':
+      return 'estado-pagada';
+    case 'Confirmada':
+    case 'Pendiente de Pago':
+      return 'estado-pendiente';
+    case 'Cancelada':
+      return 'estado-cancelada';
+    default:
+      return 'estado-default';
+  }
+}
+
   constructor(
     private reservarService: ReservarService,
     private navCtrl: NavController

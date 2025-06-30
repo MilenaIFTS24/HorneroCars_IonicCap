@@ -25,7 +25,10 @@ export class PerfilPage implements OnInit {
 
 
   constructor(private cameraService: CameraService,
-    private datosPerfilService: DatosPerfilService, private toastController: ToastController, private router: Router) {  // Inyecta servicios
+              private datosPerfilService: DatosPerfilService, 
+              private toastController: ToastController, 
+              private router: Router
+  )  {  // Inyecta servicios
 
     //Validators para el formgroup (formPerfil)
     this.formPerfil = new FormGroup({
@@ -38,24 +41,24 @@ export class PerfilPage implements OnInit {
     this.cargarDatosGuardados();  //carga los datos guardados en el formulario
   }
 
-  //funciones sobre el form 
+/* funciones sobre el form */
 // Método para guardar cambios, mostrar toast y redirigir
-  async guardarCambios() { // Se eliminan los parámetros 'mensaje' y 'color' ya que el mensaje y color son fijos para el éxito
+  async guardarCambios() { 
     if (this.formPerfil.valid) {
       // Guarda los datos usando el servicio (ahora es asíncrono)
       await this.datosPerfilService.guardarDatos(this.formPerfil.value);
 
       // Muestra el Toast de éxito
       const toast = await this.toastController.create({
-        message: 'Datos de perfil guardados exitosamente.', // Mensaje fijo de éxito
+        message: 'Datos de perfil guardados exitosamente.', 
         duration: 1400,
-        color: 'success', // Color fijo de éxito
+        color: 'success', 
         position: 'middle',
       });
       await toast.present();
       await toast.onDidDismiss();
       // Redirige a la página de reservas después de que el toast se haya presentado
-      this.router.navigate(['/home/reservar']); // Asegúrate de que '/reservas' sea la ruta correcta
+      this.router.navigate(['/home/reservar']); 
     } else {
       console.log('Formulario inválido, no se pueden guardar los cambios.');
       // Muestra un toast de error si el formulario es inválido
@@ -70,18 +73,18 @@ export class PerfilPage implements OnInit {
     }
   }
 
-  cargarDatosGuardados() {
-    const datos = this.datosPerfilService.obtenerDatos(); // Usa el servicio para cargar los datos
-    if (datos) {
-      this.formPerfil.patchValue(datos);
-    }
+  async cargarDatosGuardados() { //obtiene los datos guardados
+  const datos = await this.datosPerfilService.obtenerDatos();
+  if (datos) {
+    this.formPerfil.patchValue(datos);
   }
+}
 
   cancelarCambios() {
     this.cargarDatosGuardados();   // Se cancelan los cambios
   }
   
-
+/* funciones sobre la camra */
   async ngOnInit() {
     // Cargar la foto guardada solo si el segmento es 'documentacion-fotografica' al inicio
     if (this.segmentoActual === 'documentacion-fotografica') {

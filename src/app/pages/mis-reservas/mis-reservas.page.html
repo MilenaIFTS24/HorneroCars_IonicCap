@@ -5,6 +5,9 @@
     <ion-card-header>
       <ion-card-title>{{ reserva.vehiculo }}</ion-card-title>
       <ion-card-subtitle>Estado: {{ reserva.estado }}</ion-card-subtitle>
+      <ion-badge [ngClass]="getClaseEstado(reserva.estado)">
+        {{ reserva.estado }}
+      </ion-badge>
       @if (reserva.estado === 'Pagada') {
       <ion-badge color="success">
         Reserva Pagada

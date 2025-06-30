@@ -5,6 +5,9 @@ ion-title {
     padding-top: 10%; //le agregamos un poco de separacion
 }
 
+ion-card-title { 
+    font-weight: 600;
+}
 
 ion-content {
     overflow: hidden; //ocultamos la barra
@@ -55,7 +58,7 @@ ion-img {
     flex-direction: column; // Para que la lista y el boton esten en columna 
     justify-content: center; // Centra verticalmente el contenido
     min-height: 100%; // Asegura que ocupe toda la altura disponible en ion-content
-    height: 90%;
+    height: 100%;
     box-shadow: #1e2428;
 }
 
@@ -63,7 +66,7 @@ ion-img {
 // --- Estilos para la ion-list ---
 
 .lista-perfil {
-    margin: 2rem;
+    margin: 1rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: scroll; //le dejamos una barrra para scrollear solo en la lista
@@ -74,8 +77,7 @@ ion-img {
 
 .btnGuardar {
     --background: #E8751A; //hay que agregarle color hornerocars (?
-    margin-left: 2rem;
-    margin-right: 2rem;
+
     margin-bottom: 5px;
 }
 
@@ -85,8 +87,7 @@ ion-img {
 
 .btnCancelar {
     --background: #8f8c89;
-    margin-left: 2rem;
-    margin-right: 2rem;
+
     margin-bottom: 5px;
 }
 
