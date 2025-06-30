@@ -1,4 +1,3 @@
-
 <ion-content>
   <!-- ion segment para dividir dentro del content sin crear pages -->
   <ion-segment [value]="segmentoActual" (ionChange)="cambiarSegmento($event)">
@@ -40,7 +39,7 @@
             </ion-item>
             <ion-item>
               <ion-input label="Correo Electrónico" label-placement="floating" type="email"
-                placeholder="email@ejemplo.com" errorText='Correo Invalido'></ion-input>
+               formControlName="email" placeholder="email@ejemplo.com" errorText='Correo Invalido'></ion-input>
             </ion-item>
             <ion-item>
               <ion-input label="Teléfono" label-placement="floating" type="tel" placeholder="+54 9 11 1234 5678"
@@ -53,8 +52,10 @@
           </ion-list>
 
           <div class="ion-padding">
-            <ion-button expand="block" class="btnCancelar">Cancelar</ion-button>
-            <ion-button expand="block" class="btnGuardar" [disabled]="formPerfil.invalid">Guardar Cambios</ion-button>
+            <ion-button expand="block" class="btnCancelar" (click)="cancelarCambios()">Cancelar</ion-button>
+            <ion-button expand="block" class="btnGuardar" [disabled]="formPerfil.invalid"
+              (click)="guardarCambios()">Guardar
+              Cambios</ion-button>
           </div>
         </div>
       </form>
@@ -75,7 +76,7 @@
       </ion-button>
 
       <ion-item>
-        <ion-label>{{ nombreArchivo }}</ion-label>   <!-- label/estado de foto (por default nombreArchivo) -->
+        <ion-label>{{ nombreArchivo }}</ion-label> <!-- label/estado de foto (por default nombreArchivo) -->
       </ion-item>
 
       <!-- si hay foto, posibilidad de eliminarla -->

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators} from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CameraService } from 'src/app/services/camera.service';
 import { RouterLink } from '@angular/router'; //para que funcione la llamada en el html
+import { DatosPerfilService } from 'src/app/services/datos-perfil.service'; // Importa el servicio datos-perfil
+import { ToastController } from '@ionic/angular';
+
 
 
 @Component({
@@ -11,7 +14,7 @@ import { RouterLink } from '@angular/router'; //para que funcione la llamada en 
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule,FormsModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class PerfilPage implements OnInit {
 
@@ -21,15 +24,40 @@ export class PerfilPage implements OnInit {
   segmentoActual: string = 'mis-datos';   // Variable para controlar el segmento activo, por defecto 'mis-datos'
 
 
-  constructor(private cameraService: CameraService) {
+  constructor(private cameraService: CameraService,
+    private datosPerfilService: DatosPerfilService, private toastController: ToastController) {  // Inyecta servicios
 
     //Validators para el formgroup (formPerfil)
     this.formPerfil = new FormGroup({
       nombre: new FormControl('', Validators.required,),
       apellido: new FormControl('', Validators.required),
-      telefono: new FormControl('',Validators.required),
-      fechaNacimiento: new FormControl('',Validators.required),
+      email: new FormControl('', Validators.required,),
+      telefono: new FormControl('', Validators.required),
+      fechaNacimiento: new FormControl('', Validators.required),
     });
+    this.cargarDatosGuardados();  //carga los datos guardados en el formulario
+  }
+
+  //funciones sobre el form 
+  async guardarCambios() {
+    if (this.formPerfil.valid) {
+      this.datosPerfilService.guardarDatos(this.formPerfil.value); // Usa el servicio para guardar los datos
+      
+    } else {
+      console.log('Formulario inválido, no se pueden guardar los cambios.');
+      this.formPerfil.markAllAsTouched();
+    }
+  }
+
+  cargarDatosGuardados() {
+    const datos = this.datosPerfilService.obtenerDatos(); // Usa el servicio para cargar los datos
+    if (datos) {
+      this.formPerfil.patchValue(datos);
+    }
+  }
+
+  cancelarCambios() {
+    this.cargarDatosGuardados();   // Se cancelan los cambios
   }
 
   async ngOnInit() {
