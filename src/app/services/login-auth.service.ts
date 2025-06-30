@@ -8,20 +8,21 @@ import { Router } from '@angular/router';
 })
 export class LoginAuthService {
 
-  private usuarioActual: User | null = null;  
+  private usuarioActual: User | null = null;  // Guarda el usuario actualmente logueado
 
+  // Escucha cambios en el estado de autenticación y actualiza `usuarioActual`
   constructor(private autorizacion: Auth, private router: Router) { 
-    onAuthStateChanged(this.autorizacion, (usuario) => this.usuarioActual = usuario)
-    
+    onAuthStateChanged(this.autorizacion, (usuario) => this.usuarioActual = usuario)  
   }
 
+// Registra un nuevo usuario, envía verificación por email y cierra sesión
 async registrarse(email: string, contraseña: string){
   const cred = await createUserWithEmailAndPassword(this.autorizacion, email, contraseña);
   await sendEmailVerification(cred.user);
   await signOut(this.autorizacion);
-  alert("verificaaa tu correo");
 }
 
+// Inicia sesión, verifica si el email está verific y lleva a /home
 async iniciarSesion(emial:string, contraseña:string){
   const cred = await signInWithEmailAndPassword(this.autorizacion, emial, contraseña);
   if(!cred.user.emailVerified){
@@ -31,12 +32,14 @@ async iniciarSesion(emial:string, contraseña:string){
   this.router.navigate(['/home'])
 }
 
+  // Cierra sesión y lleva al login
 async cerrarSesion(){
   await signOut(this.autorizacion);
   this.router.navigate(['/login'])
 
 }
 
+// Devuelve `true` si el usuario está logueado y su correo está verificado
 usuarioLogueado(): boolean {
     return !!this.usuarioActual && this.usuarioActual.emailVerified
   }

@@ -1,3 +1,24 @@
+ion-toolbar {
+    --background: #1e1c1cde;
+}
+
+ion-title { 
+    color: antiquewhite;
+}
+
+ion-title span {
+  color: #E8751A;
+}
+
+h1{
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -6,11 +27,24 @@
   padding: 2rem;
   max-width: 400px;
   margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  
+}
+
+.itemInputs{
+  margin-bottom: 1rem;
 }
 
 .logo-container {
-  margin-bottom: 2rem;
+   margin-bottom: 2rem;
   text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .logo-img {
@@ -36,3 +70,30 @@
 .label{
   margin-bottom: 1.2rem;
 }
+
+ion-content {
+    overflow: hidden; //ocultamos la barra
+    --background: #f1f1f178;
+}
+
+#boton1{
+  --background: #E8751A;
+  margin-top: 1rem;
+}
+
+#boton2{
+  --color: #E8751A;
+  --border-color: #E8751A;
+  margin-top: 1rem;
+}
+
+#boton3{
+  --color: #E8751A;
+}
+
+#footerTitulo{
+  font-size: small;
+  --color: #EEEEEE;
+}
+
+
