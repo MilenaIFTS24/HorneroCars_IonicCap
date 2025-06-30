@@ -11,7 +11,7 @@ import { Reserva } from 'src/app/models/reserva.model';
   templateUrl: './mis-reservas.page.html',
   styleUrls: ['./mis-reservas.page.scss'],
   standalone: true,
-  imports: [IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonFooter, IonText, IonCardContent, IonButton, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonText, IonCardContent, IonButton, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, CommonModule, FormsModule]
 })
 export class MisReservasPage implements OnInit {
 
