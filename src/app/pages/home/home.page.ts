@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular'; 
+import { RouterLink } from '@angular/router'; //para que funcione la llamada en el html
 
 
 
@@ -10,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone:true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class HomePage implements OnInit {
 
@@ -19,4 +20,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
+
+
 }
+
