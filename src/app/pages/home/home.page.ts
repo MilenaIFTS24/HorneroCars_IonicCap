@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular'; 
 import { IonNav } from '@ionic/angular/standalone'; //para poder navegar hacia home 
+import { IonicModule, AlertController } from '@ionic/angular'; 
+import { RouterLink } from '@angular/router'; //para que funcione la llamada en el html
+import { Router } from '@angular/router'; //para que funcione la llamada en el html
 
-
-import {PerfilPage} from 'src/app/pages/perfil/perfil.page'
 
 
 
@@ -13,16 +13,35 @@ import {PerfilPage} from 'src/app/pages/perfil/perfil.page'
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  imports: [IonicModule, CommonModule, FormsModule,IonNav]
+  standalone:true,
+  imports: [IonicModule, CommonModule, FormsModule,]
+  
 })
-export class HomePage implements OnInit {
-  component = PerfilPage; //para poder navegar hacia home 
+export class HomePage  {
+  constructor( private alertController: AlertController, // inyecto alert y router
+               private router: Router) { }
 
-
-  constructor() { }
-
-  ngOnInit() {
+  async confirmarLogOut() {  // activa alert para confirmacion de logout
+    const alert = await this.alertController.create({
+      header: 'Confirmar Salida',
+      message: '¿Deseas cerrar tu sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cerrar sesión cancelado');
+          },
+        },
+        {
+          text: 'Salir',
+          handler: () => {
+              this.router.navigate(['login'])// deberiamos llamar al metodo cerrarSesion();
+          },
+        },
+      ],
+    });
+   await alert.present();
   }
-
 }
 
