@@ -1,53 +1,76 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators} from '@angular/forms'; 
 import { IonicModule } from '@ionic/angular';
 import { IonNavLink } from '@ionic/angular/standalone';
-
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; // imports para abrir la camara
-
-import { HomePage } from 'src/app/pages/home/home.page'  //para poder navegar hacia home, queda pendiente
-
+import { CameraService } from 'src/app/services/camera.service';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, IonNavLink]
+  imports: [IonicModule, CommonModule,FormsModule,IonNavLink,ReactiveFormsModule]
 })
-export class PerfilPage {
+export class PerfilPage implements OnInit {
 
-  nombreArchivo: string = 'Ningún archivo seleccionado';
-  fotoBase64: string | undefined; // aca almacenamos la foto base64
+  nombreArchivo: string = 'Ningún archivo seleccionado'; // Le dejo un nombre por default porque yafu
+  fotoBase64: string | undefined;
+  formPerfil!: FormGroup;
+  segmentoActual: string = 'mis-datos';   // Variable para controlar el segmento activo, por defecto 'mis-datos'
 
 
- constructor() {} 
+  constructor(private cameraService: CameraService) {
 
-  // Funcion para sacar foto con la camara
-  async sacarFoto() {
-    try {
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: false,
-        resultType: CameraResultType.Base64, 
-        source: CameraSource.Camera, 
-      });
+    //Validators para el formgroup (formPerfil)
+    this.formPerfil = new FormGroup({
+      nombre: new FormControl('', Validators.required,),
+      apellido: new FormControl('', Validators.required),
+      telefono: new FormControl('',Validators.required),
+      fechaNacimiento: new FormControl('',Validators.required),
+    });
+  }
 
-      if (image.base64String) {
-        this.nombreArchivo = 'Foto Capturada'; //cambia label si se subio img
-        this.fotoBase64 = image.base64String;
-
-      } else {
-        this.nombreArchivo = 'Ningún archivo seleccionado';
-        this.fotoBase64 = undefined;
-      }
-    } catch (error) {
-      console.error('Error al tomar foto:', error);
-      this.nombreArchivo = 'Ningún archivo seleccionado';
-      this.fotoBase64 = undefined;
+  async ngOnInit() {
+    // Cargar la foto guardada solo si el segmento es 'documentacion-fotografica' al inicio
+    if (this.segmentoActual === 'documentacion-fotografica') {
+      await this.cargarFotoGuardada();
     }
   }
 
+  // Metodo para cambiar el segmento
+  cambiarSegmento(event: any) {
+    this.segmentoActual = event.detail.value;
+    // Si el segmento cambia a 'documentacion-fotografica', carga la foto
+    if (this.segmentoActual === 'documentacion-fotografica' && !this.fotoBase64) {
+      this.cargarFotoGuardada();
+    }
+  }
 
+  // Funcion para sacar foto con la camara
+  async sacarFoto() {
+    this.fotoBase64 = await this.cameraService.sacarFoto();
+
+    if (this.fotoBase64) {
+      this.nombreArchivo = 'Foto Capturada';
+      await this.cameraService.guardarFoto(this.fotoBase64);
+    } else {
+      this.nombreArchivo = 'Ningún archivo seleccionado';
+    }
+  }
+
+  // Carga la foto guardada desde el servicio
+  async cargarFotoGuardada() {
+    this.fotoBase64 = await this.cameraService.cargarFoto();
+    if (this.fotoBase64) {
+      this.nombreArchivo = 'Foto Guardada';
+    }
+  }
+
+  // Elimina la foto guardada
+  async eliminarFoto() {
+    await this.cameraService.eliminarFoto();
+    this.fotoBase64 = undefined;
+    this.nombreArchivo = 'Ningún archivo seleccionado';
+  }
 }

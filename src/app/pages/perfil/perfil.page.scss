@@ -1,6 +1,6 @@
 ion-chip {
     justify-content: center;
-    --background:#f1f1f1cf;
+    --background: #f1f1f1cf;
 }
 
 .usuario {
@@ -13,15 +13,52 @@ ion-title {
 }
 
 ion-toolbar {
-    --background: #1e1c1cde;
+    --background: #222831;
 }
 
 ion-content {
     overflow: hidden; //ocultamos la barra
-    --background: #f1f1f1a9;
+    --background: #f1f1f178;
 }
 
-// --- Estilos para contenedor de la lista ---
+ion-card {
+    box-shadow: none;
+    --background: #f1f1f178;
+}
+
+// --- estilos para cuando icono esta seleccionado --- // 
+ion-segment-button {
+    --indicator-color: #E8751A; //modifica el default de la linea debajo
+}
+
+ion-icon {
+    color: #52575e;
+    --color-checked: #222831;
+}
+
+ion-label {
+    color: #222831;
+    font-size: smaller;
+}
+
+// --- estilos para iconos especificos --- // 
+
+#sacarFoto {
+    color: azure;
+}
+
+#eliminarFoto {
+    color: azure;
+}
+
+// --- estilos para img cargada --- // 
+ion-img {
+    margin-bottom: 2rem;
+}
+
+
+
+// --- estilos para contenedor de la lista ---
 
 .contenedor-lista {
     display: flex;
@@ -41,48 +78,37 @@ ion-content {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: scroll; //le dejamos una barrra para scrollear solo en la lista
     align-items: center;
-
-
-    ion-item {
-        margin-bottom: 1rem;
-
-        div.contenedor-subir-imagen {
-            display: flex;
-            flex-direction: column; // para que el boton y el nombre esten en columna
-            align-items: flex-end; // alineacion de boton a la derecha
-            width: 100%;
-        }
-
-        .sacarFoto {
-            --background: #1e2428;
-            color: #dbdee0;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            text-align: center;
-            margin-bottom: 0.5rem; // espacio entre boton y nombre
-
-            .sacarFoto:hover {
-                background-color: #333335;
-            }
-
-        }
-
-        .nombre-archivo {
-            font-size: 0.75rem;
-            color: #6c757d;
-            text-align: right; // alinea el nombre del archivo a la derecha
-            width: 100%;
-            box-sizing: border-box; // Asegura que el padding no afecte el ancho
-            margin-bottom: 0.5rem; // espacio entre boton y base
-        }
-
-    }
 }
 
+// --- Estilos para los botones  ---
 
 .btnGuardar {
-    --background: rgb(230, 137, 44); //hay que agregarle color hornerocars (?
+    --background: #E8751A; //hay que agregarle color hornerocars (?
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 5px;
 }
 
+.btnGuardar:hover {
+    --background: #D46B12; //hay que agregarle color hornerocars (?
+}
+
+.btnCancelar {
+    --background: #8f8c89;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 5px;
+}
+
+.btnCancelar:hover {
+    --background: #74706d;
+}
+
+.btnSacarFoto {
+    --background: #E8751A; //hay que agregarle color hornerocars (?
+    margin-bottom: 2rem;
+}
+
+.btnSacarFoto:hover {
+    --background: #D46B12; //hay que agregarle color hornerocars (?
+}

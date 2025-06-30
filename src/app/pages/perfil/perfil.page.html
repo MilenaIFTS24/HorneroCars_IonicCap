@@ -1,61 +1,115 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-chip>
-        <ion-avatar>
-          <img alt="user" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-avatar>
-        <ion-label>nombre de usuario</ion-label>
-      </ion-chip>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-title>Mis datos personales</ion-title>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Perfil</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-    <div class="contenedor-lista">
-      <ion-list lines="full" class="lista-perfil">
-        <ion-item>
-          <ion-input label="Nombre" label-placement="floating" placeholder="Tu nombre"></ion-input>
-        </ion-item>
+  <!-- ion segment para dividir dentro del content sin crear pages -->
+  <ion-segment [value]="segmentoActual" (ionChange)="cambiarSegmento($event)">
+    <ion-segment-button value="mis-datos">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>Mis Datos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="documentacion-fotografica">
+      <ion-icon name="camera-outline"></ion-icon>
+      <ion-label>Documentos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="metodos-pago">
+      <ion-icon name="card-outline"></ion-icon>
+      <ion-label>Forma Pago</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-        <ion-item>
-          <ion-input label="Apellido" label-placement="floating" placeholder="Tu apellido"></ion-input>
-        </ion-item>
 
-        <ion-item>
-          <ion-input label="Correo Electrónico" label-placement="floating" type="email"
-            placeholder="email@ejemplo.com" ngModel email errorText="mail invalido"></ion-input>
-        </ion-item>
+  <!-- switch case para cambiar de segmento (Segmento Actual / Cambiar Segmento) -->
 
-        <ion-item>
-          <ion-input label="Teléfono" label-placement="floating" type="tel"
-            placeholder="+54 9 11 1234 5678"></ion-input>
-        </ion-item>
+  <!-- case para segmento actual o sea mis-datos -->
+  @switch (segmentoActual) {
+  @case ('mis-datos') {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mis Datos Personales</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formPerfil">
+        <div class="contenedor-lista">
+          <ion-list lines="full" class="lista-perfil">
+            <ion-item>
+              <ion-input label="Nombre" label-placement="floating" placeholder="Tu nombre" formControlName="nombre"
+                errorText='El nombre es requerido'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Apellido" label-placement="floating" placeholder="Tu apellido"
+                formControlName="apellido" errorText='El apellido es requerido'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Correo Electrónico" label-placement="floating" type="email"
+                placeholder="email@ejemplo.com" formControlName="correo" errorText='Correo Invalido'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Teléfono" label-placement="floating" type="tel" placeholder="+54 9 11 1234 5678"
+                formControlName="telefono" errorText='El telefono es requerido'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Fecha de Nacimiento" label-placement="floating" type="date" placeholder="DD/MM/AAAA"
+                formControlName="fechaNacimiento" errorText='La fecha es requerida'></ion-input>
+            </ion-item>
+          </ion-list>
 
-        <ion-item>
-          <ion-input label="Fecha de Nacimiento" label-placement="floating" type="date"
-            placeholder="DD/MM/AAAA"></ion-input>
-        </ion-item>
-
-       <ion-item class="subir-imagen">
-        <ion-label>Documentación Fotográfica</ion-label>
-
-        <div class="contenedor-subir-imagen">
-          <ion-button size="small" class="sacarFoto" (click)="sacarFoto()">
-            <ion-icon slot="start" name="camera"></ion-icon>
-            Sacar Foto
-          </ion-button>
-        <span class="nombre-archivo">{{ nombreArchivo }}</span>
+          <div class="ion-padding">
+            <ion-button expand="block" class="btnCancelar">Cancelar</ion-button>
+            <ion-button expand="block" class="btnGuardar" [disabled]="formPerfil.invalid">Guardar Cambios</ion-button>
+          </div>
         </div>
-        
+      </form>
+    </ion-card-content>
+  </ion-card>
+  }
+
+  <!-- case para documentacion fotografica-->
+  @case ('documentacion-fotografica') {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Documentación Fotografica</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" (click)="sacarFoto()" class="btnSacarFoto">
+        <ion-icon slot="start" name="camera" id="sacarFoto"></ion-icon>
+        Sacar Foto
+      </ion-button>
+
+      <ion-item>
+        <ion-label>{{ nombreArchivo }}</ion-label>   <!-- label/estado de foto (por default nombreArchivo) -->
       </ion-item>
 
-      </ion-list>
+      <!-- si hay foto, posibilidad de eliminarla -->
+      @if (fotoBase64) {
+      <ion-img [src]="'data:image/jpeg;base64,' + fotoBase64"></ion-img> <!-- aca se carga la foto-->
+      <ion-button expand="block" color="danger" (click)="eliminarFoto()">
+        <ion-icon slot="start" name="trash" id="eliminarFoto"></ion-icon>
+        Eliminar Foto
+      </ion-button>
+      }
+    </ion-card-content>
+  </ion-card>
+  }
 
-      <div class="ion-padding">
-        <ion-button expand="block" class="btnGuardar">Guardar Cambios</ion-button>
-      </div>
-    </div>
-  </ion-content>
+  <!-- case para metodos de pago guardados ponele-->
+  @case ('metodos-pago') {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Metodos de pago guardados</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p></p>
+    </ion-card-content>
+  </ion-card>
+  }
+  }
+</ion-content>
