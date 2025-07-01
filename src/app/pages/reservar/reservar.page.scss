@@ -1,0 +1,53 @@
+//Estilos toolbar
+
+ion-toolbar {
+    --background: #1e1c1cde;
+}
+
+ion-title {
+    color: antiquewhite;
+}
+
+ion-title span {
+    color: var(--primer-color);
+}
+
+//Estilo titulo y contenido
+ion-content {
+    --background: var(--cuarto-color);
+    ion-icon {
+        font-size: 38px;
+        --ionicon-size: 38px;
+        color: #2b2a2a;
+        margin-bottom: 0;
+    }
+    
+    ion-title {
+        margin: 25px 0 20px 0;
+        font-weight: 600;
+        color: var(--tercer-color);
+    }
+}
+
+//Estilos formulario
+
+#formReserva {
+    margin: 1.5rem;
+    padding: 5px;    
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+
+    ion-input {
+        margin: 15px;
+    }
+
+    ion-select {
+        margin: 15px;
+    }
+
+    ion-button {
+        --background: var(--primer-color);
+        --color: var(--quinto-color);
+    }
+}

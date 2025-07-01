@@ -3,12 +3,13 @@ import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } 
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app'
 import { environment } from './environments/environment.prod';
-
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
 import { importProvidersFrom } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -16,6 +17,8 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     importProvidersFrom(IonicModule.forRoot()),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),    
+    provideAuth(()=> getAuth()),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
+    provideHttpClient(withFetch()),   
   ],
 });

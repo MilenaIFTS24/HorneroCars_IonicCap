@@ -29,13 +29,14 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              
               {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": ["src/global.scss", "src/theme/variables.scss", "https://cdn.jsdelivr.net/npm/ionicons@6.0.3/dist/css/ionicons.min.css"],
             "scripts": [],
             "browser": "src/main.ts"
           },
@@ -129,7 +130,14 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
+    "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ],
+
+    "analytics": "2808a0da-e20e-4bc0-898e-41008c5dfa50"
+
+    "analytics": false
+
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

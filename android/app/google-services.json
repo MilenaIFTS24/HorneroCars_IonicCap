@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "754101514318",
+    "project_id": "hornerocarsapp",
+    "storage_bucket": "hornerocarsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754101514318:android:574b7ffa74af558ca8931f",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn4U4z8d_lLTePshC9-cPAcams7Itu_3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
