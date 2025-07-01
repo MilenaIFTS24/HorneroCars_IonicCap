@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-button (click)="obtenerPosicionActual()">Calcular posicion</ion-button>
+<!-- <ion-button (click)="obtenerPosicionActual()">Calcular posicion</ion-button>
 @if (errorMensaje) {
 <p class="ion-text-danger">{{errorMensaje}}</p>
 }
@@ -23,7 +23,7 @@
 <iframe [src]="googleMapsUrl | urlSegura" class="mapa-iframe"></iframe>
 } @else {
 <p class="mensaje-espera">Aun no se ha obtenido la ubicacion</p>
-}
+} -->
 <ion-content>
   <ion-router-outlet></ion-router-outlet> <!--aca van contenidos todos los componentes hijo-->
 </ion-content>
