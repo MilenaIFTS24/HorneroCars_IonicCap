@@ -9,6 +9,7 @@ import { AppComponent } from './app/app.component';
 
 import { importProvidersFrom } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -17,6 +18,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules)),
     importProvidersFrom(IonicModule.forRoot()),
     provideAuth(()=> getAuth()),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),    
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
+    provideHttpClient(withFetch()),   
   ],
 });

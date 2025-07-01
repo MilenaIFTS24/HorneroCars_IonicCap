@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink= "perfil" > <!--boton con ruta al home/reservas-->
-        <ion-icon name="chevron-back-outline"></ion-icon> 
+      <ion-button routerLink="perfil"> <!--boton con ruta al home/reservas-->
+        <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title class="ion-text-center">Hornero<span>Cars</span></ion-title>
@@ -15,6 +15,15 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-button (click)="obtenerPosicionActual()">Calcular posicion</ion-button>
+@if (errorMensaje) {
+<p class="ion-text-danger">{{errorMensaje}}</p>
+}
+@if(googleMapsUrl){
+<iframe [src]="googleMapsUrl | urlSegura" class="mapa-iframe"></iframe>
+} @else {
+<p class="mensaje-espera">Aun no se ha obtenido la ubicacion</p>
+}
 <ion-content>
   <ion-router-outlet></ion-router-outlet> <!--aca van contenidos todos los componentes hijo-->
 </ion-content>
