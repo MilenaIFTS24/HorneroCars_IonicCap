@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+
 import { UrlSeguraPipe } from 'src/app/pipes/url-segura.pipe';
 import { GeolocationService } from 'src/app/services/geolocation.service';
+
+import { IonNav } from '@ionic/angular/standalone'; //para poder navegar hacia home 
+import { IonicModule, AlertController } from '@ionic/angular'; 
+import { RouterLink } from '@angular/router'; //para que funcione la llamada en el html
+import { Router } from '@angular/router'; //para que funcione la llamada en el html
+
 
 @Component({
   selector: 'app-home',
@@ -18,7 +24,8 @@ export class HomePage{
   urlGoogleMaps: string | null = null;
   errorUbicacionMensaje: string = ''; //error para mostrar en la plantilla y los console.log
 
-  constructor(private _servicioGeolocation: GeolocationService) { }
+  constructor(private _servicioGeolocation: GeolocationService, private alertController: AlertController, // inyecto alert y router
+               private router: Router) { }
   
   private async procesoGeolocalizacion(): Promise<void> {
     this.limpiarMensajes(); // reseteo las variables
@@ -98,6 +105,30 @@ export class HomePage{
   async reintentarProceso(): Promise<void> {
     console.log('Reintentando proceso de geolocalización...');
     await this.procesoGeolocalizacion();
-  }
 
+
+  async confirmarLogOut() {  // activa alert para confirmacion de logout
+    const alert = await this.alertController.create({
+      header: 'Confirmar Salida',
+      message: '¿Deseas cerrar tu sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cerrar sesión cancelado');
+          },
+        },
+        {
+          text: 'Salir',
+          handler: () => {
+              this.router.navigate(['login'])// deberiamos llamar al metodo cerrarSesion();
+          },
+        },
+      ],
+    });
+   await alert.present();
+
+  }
 }
+
