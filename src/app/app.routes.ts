@@ -8,7 +8,7 @@ export const routes: Routes = [
   }, 
 
   {
-    path: 'home', loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage), //canActivate: [authGuard],
+    path: 'home', loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage), canActivate: [authGuard],
     children: [ // Los hijos de 'home' se cargan dentro de HomePage
       {
         path: '',
@@ -16,14 +16,14 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'reservar', loadComponent: () => import('./pages/reservar/reservar.page').then(m => m.ReservarPage),//canActivate: [authGuard], 
+        path: 'reservar', loadComponent: () => import('./pages/reservar/reservar.page').then(m => m.ReservarPage),canActivate: [authGuard], 
       },
       {
-        path: 'perfil', loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage), //canActivate: [authGuard],
+        path: 'perfil', loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage), canActivate: [authGuard],
       },
       {
         path: 'mis-reservas',
-        loadComponent: () => import('./pages/mis-reservas/mis-reservas.page').then(m => m.MisReservasPage), //canActivate: [authGuard],
+        loadComponent: () => import('./pages/mis-reservas/mis-reservas.page').then(m => m.MisReservasPage), canActivate: [authGuard],
 
       },
 
