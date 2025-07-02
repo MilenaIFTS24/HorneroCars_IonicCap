@@ -6,7 +6,7 @@ import { Preferences } from '@capacitor/preferences'; // Importa Preferences
 })
 export class DatosPerfilService {
 
-  // Almacenará los datos del perfil en memoria una vez cargados
+  // Almacena los datos del perfil en memoria una vez cargados
   private datosPerfil: any | null = null;
   private readonly STORAGE_KEY = 'datosPerfilUsuario';
 
@@ -27,7 +27,6 @@ export class DatosPerfilService {
   }
 
   /* Guarda los datos de perfil del usuario en Capacitor Preferences y actualiza la copia en memoria. */
- 
   async guardarDatos(datos: any): Promise<void> {
     try {
       this.datosPerfil = datos; // Actualiza la copia en memoria
@@ -42,10 +41,10 @@ export class DatosPerfilService {
   }
 
   /* Obtiene los datos. Si ya están en memoria, los devuelve.
-     Si no, los carga desde preferences (aunque ya se deberian haber cargado al inicio). */
+  Si no, los carga desde preferences (aunque ya se deberian haber cargado al inicio). */
 
  async obtenerDatos(): Promise<any | null> {
-  // si no están en memoria, cargalos primero
+  // si no están en memoria, carga primero
   if (this.datosPerfil === null) {
     await this.cargarDatosPerfil();
   }
